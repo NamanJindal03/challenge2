@@ -11,6 +11,27 @@ let board = function(element, row, column){
     this.row = row;
     this.column = column;
     this.init();
+    this.bindEvents();
+    this.color = "";
+}
+board.prototype.bindEvents = function(){
+    this.element.addEventListener('click', (e)=>{
+        //console.log(e.target.style.backgroundColor);
+        //let current = "";
+        //console.log(e.target.dataset["cell"][0])
+        // console.log(this.row);
+        // console.log(e.target.dataset["cell"][0]);
+        if(e.target.dataset["cell"][0]==this.row){
+            console.log("in color");
+            this.color = e.target.style.backgroundColor;
+            console.log(this.color);
+        }else{
+            if(this.color != ""){
+                e.target.style.backgroundColor = this.color;
+                console.log(e.target.style.backgroundColor);
+            }  
+        }
+    })
 }
 board.prototype.init = function(){
     var div = document.createDocumentFragment("div");
@@ -22,6 +43,7 @@ board.prototype.init = function(){
                 var colorBox = document.createElement("div");
                 var color = getRandomColor();
                 colorBox.classList.add("childBox");
+                colorBox.dataset["cell"]= `${i}:${j}`;
                 colorBox.style.backgroundColor = color;
                 header.appendChild(colorBox);
             }else{
