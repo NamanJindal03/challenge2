@@ -34,12 +34,13 @@ board.prototype.bindEvents = function(){
     })
 }
 board.prototype.init = function(){
+    console.log(this.row);
     var div = document.createDocumentFragment("div");
     for(let i=0; i<=this.row; i++){
         var header = document.createElement("div");
         header.classList.add("header");
         for(let j=0; j<this.column; j++){
-            if(i===this.row){
+            if(i==this.row){
                 var colorBox = document.createElement("div");
                 var color = getRandomColor();
                 colorBox.classList.add("childBox");
@@ -59,4 +60,4 @@ board.prototype.init = function(){
 
 }
 
-new board("#board", 5, 5);
+new board("#board", 8,8);
